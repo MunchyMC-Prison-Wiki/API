@@ -128,7 +128,9 @@ export default class NBTParser {
             // @ts-ignore
             location: String(nbt.components["minecraft:lore"][0].extra[0].text).toLowerCase(),
             map: map,
-            item: nbt.id.split(':').join('_'),
+            // @ts-nocheck
+            // @ts-ignore
+            item: nbt.components["minecraft:custom_model_data"] ? "munchy_" + nbt.components["minecraft:custom_model_data"].strings[0] : nbt.id.split(':').join('_'),
             enchants: this.getEnchants(nbt),
             tint: nbt.components["minecraft:dyed_color"] ? this.getHex(nbt.components["minecraft:dyed_color"]) : undefined,
             // @ts-nocheck
